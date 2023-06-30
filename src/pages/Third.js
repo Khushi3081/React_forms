@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import TextField from "./TextField"
-import SelectField from "./SelectField"
-import RadioField from "./RadioField"
+import TextField from "../components/TextField"
+import SelectField from "../components/SelectField"
+import RadioField from "../components/RadioField"
 
 export default function Third(props) {
     const [errors, setError] = useState({})

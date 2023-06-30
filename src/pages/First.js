@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import TextField from "./TextField"
-import SelectField from "./SelectField"
+import TextField from "../components/TextField"
+import SelectField from "../components/SelectField"
 import "../assets/css/TextField.css"
-import RadioField from "./RadioField"
+import RadioField from "../components/RadioField"
 
 export default function (props) {
     //Dropdown value

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import TextField from "./TextField"
-import SelectField from "./SelectField"
+import TextField from "../components/TextField"
+import SelectField from "../components/SelectField"
 import { useNavigate } from "react-router-dom"
 
 export default function Second(props) {

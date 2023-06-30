@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import SelectField from "./SelectField"
-import TextField from "./TextField"
+import SelectField from "../components/SelectField"
+import TextField from "../components/TextField"
 
 export default function Fourth(props) {
     const PaymentMethod = [

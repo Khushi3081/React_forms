@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import TextField from "./TextField"
-import RadioField from "./RadioField"
+import TextField from "../components/TextField"
+import RadioField from "../components/RadioField"
 import { values } from "lodash"
 export default function Fifth(props) {
     const [errors, setError] = useState([])
