@@ -8,7 +8,7 @@ h1 {
 }
 form {
     background-color: #bfddf7;
-    max-width:500px;
+    max-width: 500px;
     margin: 0 auto;
     padding: 30px;
     border-radius: 5px;
@@ -48,6 +48,15 @@ input[type="radio"] {
     display: flex;
 }
 input[type="button"] {
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: large;
+}
+button[type="submit"] {
     background-color: #1a73e8;
     color: #ffffff;
     border: none;

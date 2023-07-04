@@ -1,4 +1,3 @@
-import { values } from "lodash"
 import React, { useState } from "react"
 
 export default function TextField({ label, ...props }) {
@@ -31,58 +30,77 @@ export default function TextField({ label, ...props }) {
                     </>
                 ) : (
                     <div>
-                        {props.type === "button" ? (
+                        {props.type === "submit" ? (
                             <>
-                                <input
+                                <button
                                     type={props.type}
                                     name={props.name}
-                                    onClick={props.handle}
                                     value={props.name}
                                     style={{ marginTop: "1rem" }}
-                                ></input>
+                                >
+                                    {props.name}
+                                </button>
                             </>
                         ) : (
                             <div>
-                                {props.name === "DateOfBirth" ? (
+                                {props.type === "button" ? (
                                     <>
-                                        <label
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                flexWrap: "wrap",
-                                            }}
-                                            htmlFor={props.name}
-                                        >
-                                            {label}
-                                        </label>
                                         <input
                                             type={props.type}
                                             name={props.name}
-                                            onChange={props.handleChange}
-                                            value={props.value}
-                                            max={maxdate}
+                                            onClick={props.handle}
+                                            value={props.name}
+                                            style={{ marginTop: "1rem" }}
                                         ></input>
                                     </>
                                 ) : (
-                                    <>
-                                        <label htmlFor={props.name}>
-                                            {label}
-                                        </label>
-                                        <input
-                                            type={props.type}
-                                            name={props.name}
-                                            value={props.value}
-                                            onChange={props.handleChange}
-                                            min={maxdate}
-                                        ></input>
-                                    </>
+                                    <div>
+                                        {props.name === "DateOfBirth" ? (
+                                            <>
+                                                <label
+                                                    style={{
+                                                        display: "flex",
+                                                        flexDirection: "row",
+                                                        flexWrap: "wrap",
+                                                    }}
+                                                    htmlFor={props.name}
+                                                >
+                                                    {label}
+                                                </label>
+                                                <input
+                                                    type={props.type}
+                                                    name={props.name}
+                                                    onChange={
+                                                        props.handleChange
+                                                    }
+                                                    value={props.value}
+                                                    max={maxdate}
+                                                ></input>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <label htmlFor={props.name}>
+                                                    {label}
+                                                </label>
+                                                <input
+                                                    type={props.type}
+                                                    name={props.name}
+                                                    value={props.value}
+                                                    onChange={
+                                                        props.handleChange
+                                                    }
+                                                    min={maxdate}
+                                                ></input>
+                                            </>
+                                        )}
+                                    </div>
                                 )}
                             </div>
                         )}
                     </div>
                 )}
             </div>
-
+            {/* {console.log(errors, "++++++++++++++")} */}
             {errors
                 ? errors.map((e) => {
                       const key = Object.keys(e).at(0)
