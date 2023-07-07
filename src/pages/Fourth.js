@@ -27,7 +27,7 @@ export default function Fourth(props) {
                 value={props.values.paymentData.Payment}
                 handleChange={(e) => props.handleChange(e, "paymentData")}
             ></SelectField>
-            <div>{props.submit.Payment}</div>
+            <div className='error'>{props.submit.Payment}</div>
             <TextField
                 label='DateToPayment'
                 name='PaymentDate'
@@ -35,7 +35,7 @@ export default function Fourth(props) {
                 value={props.values.paymentData.PaymentDate}
                 handleChange={(e) => props.handleChange(e, "paymentData")}
             ></TextField>
-            <div>{props.submit.PaymentDate}</div>
+            <div className='error'>{props.submit.PaymentDate}</div>
             {/* )} */}
         </div>
     )

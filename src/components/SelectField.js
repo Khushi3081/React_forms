@@ -15,14 +15,17 @@ export default function SelectField({ label, ...props }) {
             >
                 <option value='Select'>Select one</option>
                 {option.map((e) => (
-                    <option value={e}>{e}</option>
+                    <option key={e} value={e}>
+                        {e}
+                    </option>
                 ))}
             </select>
             {errors
                 ? errors.map((e) => {
                       const key = Object.keys(e).at(0)
                       const errorMsg = Object.values(e).at(0)
-                      if (props.name === key) return errorMsg
+                      if (props.name === key)
+                          return <div className='error'>{errorMsg}</div>
                   })
                 : null}
         </div>

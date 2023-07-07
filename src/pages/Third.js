@@ -5,7 +5,6 @@ import RadioField from "../components/RadioField"
 
 export default function Third(props) {
     const [errors, setError] = useState({})
-   
 
     const Class = ["First", "Economy", "Business"]
     const travelData = localStorage.getItem("travelData")
@@ -46,7 +45,7 @@ export default function Third(props) {
                     handleChange={(e) => props.handleChange(e, "queryData")}
                 ></RadioField>
             </div>
-            {props.submit.Travel}
+            <div className='error'>{props.submit.Travel}</div>
             <SelectField
                 label='Class'
                 name='Class'
@@ -55,15 +54,17 @@ export default function Third(props) {
                 options={Class}
                 handleChange={(e) => props.handleChange(e, "queryData")}
             ></SelectField>
-            {errors.Class}
+            <div className='error'>{props.submit.Class}</div>
+
             <TextField
                 label='Person'
                 name='Person'
                 type='number'
+                errors={props.errors}
                 value={props.values.queryData.Person}
                 handleChange={(e) => props.handleChange(e, "queryData")}
             ></TextField>
-            {props.submit.Person}
+            <div className='error'>{props.submit.Person}</div>
             <TextField
                 label='Other Service'
                 name='OtherService'
@@ -71,7 +72,7 @@ export default function Third(props) {
                 value={props.values.queryData.OtherService}
                 handleChange={(e) => props.handleChange(e, "queryData")}
             ></TextField>
-            {props.submit.OtherService}
+            <div className='error'>{props.submit.OtherService}</div>
 
             {/* )} */}
         </div>

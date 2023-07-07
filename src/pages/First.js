@@ -19,7 +19,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div>{props.submit.FirstName}</div>
+            <div className="error">{props.submit.FirstName}</div>
 
             <TextField
                 label='LastName'
@@ -29,7 +29,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div>{props.submit.LastName}</div>
+            <div className="error">{props.submit.LastName}</div>
 
             <TextField
                 label='Email'
@@ -39,7 +39,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div>{props.submit.Email}</div>
+            <div className="error">{props.submit.Email}</div>
             <TextField
                 label='PhoneNo'
                 name='PhoneNo'
@@ -48,7 +48,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div>{props.submit.PhoneNo}</div>
+            <div className="error">{props.submit.PhoneNo}</div>
             <TextField
                 label='DateOfBirth'
                 name='DateOfBirth'
@@ -57,8 +57,8 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
+            <div className="error">{props.submit.DateOfBirth}</div>
             <RadioField label='Gender'></RadioField>
-            <div>{props.submit.DateOfBirth}</div>
             <div
                 style={{
                     display: "flex",
@@ -91,7 +91,7 @@ export default function (props) {
                     errors={props.errors}
                 ></RadioField>
             </div>
-            <div>{props.submit.gender}</div>
+            <div className="error">{props.submit.gender}</div>
             <SelectField
                 label='ReletionshipStatus'
                 name='reletion'
@@ -101,7 +101,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></SelectField>
-            <div>{props.submit.reletion}</div>
+            <div className="error">{props.submit.reletion}</div>
         </div>
     )
 }

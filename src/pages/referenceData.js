@@ -1,60 +1,41 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import TextField from "../components/TextField"
 import RadioField from "../components/RadioField"
-export default function Fifth(props) {
+export default function Reference(props) {
     const [errors, setError] = useState([])
-
-    const paymentData = localStorage.getItem("paymentData")
 
     return (
         <div>
-            {/* {paymentData == null ? (
-                <h1>Please fill Travel-detail first</h1>
-            ) : ( */}
             <h1>Reference-detail form</h1>
             {props.values.referenceData.map((c, index) => {
-                const key = Object.keys(c)
-                const value = Object.values(c)
-                let data
-                let data1
-
-                key.forEach((val) => {
-                    if (val.includes("Phone")) {
-                        data = val
-                    }
-                    if (val.includes("Name")) {
-                        data1 = val
-                    }
-                })
-
                 return (
                     <>
                         <TextField
                             label='Name'
-                            name={`Name${index}`}
+                            name='Name'
                             type='text'
-                            value={c[`${data1}`]}
+                            value={c.Name}
                             errors={props.errors}
                             handleChange={(e) =>
                                 props.handleChange(e, "referenceData", index)
                             }
                         ></TextField>
                         <div className='error'>
-                            {props.submit[`Name${index}`]}
+                            {props.referenceError[index].Name}
                         </div>
                         <TextField
                             key={index}
                             label='Phone Number'
-                            name={`Phone${index}`}
+                            name='Phone'
                             type='text'
-                            value={c[`${data}`]}
+                            value={c.Phone}
                             errors={props.errors}
                             handleChange={(e) =>
                                 props.handleChange(e, "referenceData", index)
                             }
                         ></TextField>
                         <div className='error'>
-                            {props.submit[`Phone${index}`]}
+                            {props.referenceError[index].Phone}
                         </div>
                         <RadioField label='Known through'></RadioField>
                         <div
@@ -66,11 +47,11 @@ export default function Fifth(props) {
                             }}
                         >
                             <RadioField
-                                name={`WhatsApp${index}`}
+                                name='WhatsApp'
                                 type='checkbox'
                                 value='WhatsApp'
                                 errors={errors}
-                                isCheck={c[`WhatsApp${index}`] === "WhatsApp"}
+                                isCheck={c.WhatsApp === "WhatsApp"}
                                 handleChange={(e) =>
                                     props.handleChange(
                                         e,
@@ -80,10 +61,10 @@ export default function Fifth(props) {
                                 }
                             ></RadioField>
                             <RadioField
-                                name={`Instagram${index}`}
+                                name='Instagram'
                                 type='checkbox'
                                 value='Instagram'
-                                isCheck={c[`Instagram${index}`] === "Instagram"}
+                                isCheck={c.Instagram === "Instagram"}
                                 errors={props.errors}
                                 handleChange={(e) =>
                                     props.handleChange(
@@ -94,10 +75,10 @@ export default function Fifth(props) {
                                 }
                             ></RadioField>
                             <RadioField
-                                name={`LinkedIn${index}`}
+                                name='LinkedIn'
                                 type='checkbox'
                                 value='LinkedIn'
-                                isCheck={c[`LinkedIn${index}`] === "LinkedIn"}
+                                isCheck={c.LinkedIn === "LinkedIn"}
                                 errors={errors}
                                 handleChange={(e) =>
                                     props.handleChange(
@@ -108,12 +89,12 @@ export default function Fifth(props) {
                                 }
                             ></RadioField>
                             <div className='error'>
-                                {props.submit[`Instagram${index}`]}
+                                {props.referenceError[index].Instagram}
                             </div>
                         </div>
                         <TextField
                             label='Share screenshot'
-                            name={`screenshot${index}`}
+                            name='screenshot'
                             type='file'
                             errors={props.errors}
                             handleChange={(e) =>
@@ -121,7 +102,7 @@ export default function Fifth(props) {
                             }
                         ></TextField>
                         <div className='error'>
-                            {props.submit[`screenshot${index}`]}
+                            {props.referenceError[index].screenshot}
                         </div>
                         {index === 0 ? null : (
                             <TextField
@@ -133,7 +114,7 @@ export default function Fifth(props) {
                         <TextField
                             name='Add'
                             type='button'
-                            handle={() => props.handleAdd(index + 1)}
+                            handle={() => props.handleAddField()}
                         ></TextField>
                     </>
                 )

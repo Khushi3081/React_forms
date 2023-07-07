@@ -90,6 +90,9 @@ export default function TextField({ label, ...props }) {
                                                         props.handleChange
                                                     }
                                                     min={maxdate}
+                                                    placeholder={
+                                                        props.placeholder
+                                                    }
                                                 ></input>
                                             </>
                                         )}
@@ -105,7 +108,8 @@ export default function TextField({ label, ...props }) {
                 ? errors.map((e) => {
                       const key = Object.keys(e).at(0)
                       const errorMsg = Object.values(e).at(0)
-                      if (props.name === key) return errorMsg
+                      if (props.name === key)
+                          return <div className='error'>{errorMsg}</div>
                   })
                 : null}
         </div>

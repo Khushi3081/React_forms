@@ -53,7 +53,7 @@ export default function Second(props) {
                     handleChange={(e) => props.handleChange(e, "travelData")}
                     errors={props.errors}
                 ></SelectField>
-                <div>{props.submit.From}</div>
+                <div className="error">{props.submit.From}</div>
 
                 <SelectField
                     label='To(Destination)'
@@ -64,7 +64,7 @@ export default function Second(props) {
                     handleChange={(e) => props.handleChange(e, "travelData")}
                     errors={props.errors}
                 ></SelectField>
-                <div>{props.submit.To}</div>
+                <div className="error">{props.submit.To}</div>
                 <TextField
                     label='DateToStart'
                     name='DateToStart'
@@ -72,7 +72,7 @@ export default function Second(props) {
                     value={props.values.travelData.DateToStart}
                     handleChange={(e) => props.handleChange(e, "travelData")}
                 ></TextField>
-                <div>{props.submit.DateToStart}</div>
+                <div className="error">{props.submit.DateToStart}</div>
                 <TextField
                     label='DateToEnd'
                     name='DateToEnd'
@@ -81,7 +81,7 @@ export default function Second(props) {
                     handleChange={(e) => props.handleChange(e, "travelData")}
                     errors={props.errors}
                 ></TextField>
-                <div>{props.submit.DateToEnd}</div>
+                <div className="error">{props.submit.DateToEnd}</div>
                 <TextField
                     label='Budget(approximate)'
                     name='Budget'
@@ -90,7 +90,7 @@ export default function Second(props) {
                     handleChange={(e) => props.handleChange(e, "travelData")}
                     errors={props.errors}
                 ></TextField>
-                <div>{props.submit.Budget}</div>
+                <div className="error">{props.submit.Budget}</div>
 
                 <SelectField
                     label='Trip-type'
@@ -101,7 +101,7 @@ export default function Second(props) {
                     handleChange={(e) => props.handleChange(e, "travelData")}
                     errors={props.errors}
                 ></SelectField>
-                <div>{props.submit.Triptype}</div>
+                <div className="error">{props.submit.Triptype}</div>
             </>
             {/* )} */}
         </div>

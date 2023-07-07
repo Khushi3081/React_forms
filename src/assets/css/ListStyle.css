@@ -1,0 +1,49 @@
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+thead {
+    border: 1px solid;
+    width: 100%;
+    height: 80px;
+}
+#heading-style {
+    background-color: aqua;
+    size: 50px;
+    text-align: center;
+}
+td,
+th {
+    border: 1px solid;
+    height: 2rem;
+    padding-left: 1rem;
+}
+tr {
+    height: 30px;
+}
+.pagination {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination button {
+    color: white;
+    float: left;
+    padding: 8px 16px;
+    display: block;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    background-color: #05aff1;
+}
+
+.pagination button:not(.active) {
+    background-color: #444444;
+}
