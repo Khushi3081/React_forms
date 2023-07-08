@@ -10,6 +10,7 @@ export default function (props) {
 
     return (
         <div>
+            {/* {console.log(props.prefillData)} */}
             <h1>Basic-detail form</h1>
             <TextField
                 label='FirstName'
@@ -19,7 +20,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div className="error">{props.submit.FirstName}</div>
+            <div className='error'>{props.submit.FirstName}</div>
 
             <TextField
                 label='LastName'
@@ -29,7 +30,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div className="error">{props.submit.LastName}</div>
+            <div className='error'>{props.submit.LastName}</div>
 
             <TextField
                 label='Email'
@@ -39,7 +40,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div className="error">{props.submit.Email}</div>
+            <div className='error'>{props.submit.Email}</div>
             <TextField
                 label='PhoneNo'
                 name='PhoneNo'
@@ -48,7 +49,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div className="error">{props.submit.PhoneNo}</div>
+            <div className='error'>{props.submit.PhoneNo}</div>
             <TextField
                 label='DateOfBirth'
                 name='DateOfBirth'
@@ -57,7 +58,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></TextField>
-            <div className="error">{props.submit.DateOfBirth}</div>
+            <div className='error'>{props.submit.DateOfBirth}</div>
             <RadioField label='Gender'></RadioField>
             <div
                 style={{
@@ -91,7 +92,7 @@ export default function (props) {
                     errors={props.errors}
                 ></RadioField>
             </div>
-            <div className="error">{props.submit.gender}</div>
+            <div className='error'>{props.submit.gender}</div>
             <SelectField
                 label='ReletionshipStatus'
                 name='reletion'
@@ -101,7 +102,7 @@ export default function (props) {
                 handleChange={(e) => props.handleChange(e, "basicData")}
                 errors={props.errors}
             ></SelectField>
-            <div className="error">{props.submit.reletion}</div>
+            <div className='error'>{props.submit.reletion}</div>
         </div>
     )
 }

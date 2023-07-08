@@ -16,6 +16,7 @@ export default function Reference(props) {
                             type='text'
                             value={c.Name}
                             errors={props.errors}
+                            referenceError={props.referenceError[index]}
                             handleChange={(e) =>
                                 props.handleChange(e, "referenceData", index)
                             }
@@ -29,6 +30,7 @@ export default function Reference(props) {
                             name='Phone'
                             type='text'
                             value={c.Phone}
+                            referenceError={props.referenceError[index]}
                             errors={props.errors}
                             handleChange={(e) =>
                                 props.handleChange(e, "referenceData", index)
@@ -96,6 +98,7 @@ export default function Reference(props) {
                             label='Share screenshot'
                             name='screenshot'
                             type='file'
+                            referenceError={props.referenceError[index]}
                             errors={props.errors}
                             handleChange={(e) =>
                                 props.handleChange(e, "referenceData", index)

@@ -16,41 +16,43 @@ import {
 import Reference from "../pages/referenceData"
 import { useNavigate } from "react-router-dom"
 
-function FormData() {
+function FormData(props) {
     const navigate = useNavigate()
     const [page, setPage] = useState(1)
-    const [values, setValue] = useState({
-        basicData: {
-            FirstName: "",
-            LastName: "",
-            Email: "",
-            PhoneNo: "",
-            DateOfBirth: "",
-            gender: "",
-            reletion: "",
-        },
-        travelData: {
-            From: "",
-            To: "",
-            DateToStart: "",
-            DateToEnd: "",
-            Budget: "",
-            Triptype: "",
-        },
-        queryData: { Travel: "", Class: "", Person: "", OtherService: "" },
-        paymentData: { Payment: "", PaymentDate: "" },
-        referenceData: [
-            {
-                id: 0,
-                Name: "",
-                Phone: "",
-                WhatsApp: "",
-                Instagram: "",
-                LinkedIn: "",
-                screenshot: "",
+    const [values, setValue] = useState(
+        props.prefillData || {
+            basicData: {
+                FirstName: "",
+                LastName: "",
+                Email: "",
+                PhoneNo: "",
+                DateOfBirth: "",
+                gender: "",
+                reletion: "",
             },
-        ],
-    })
+            travelData: {
+                From: "",
+                To: "",
+                DateToStart: "",
+                DateToEnd: "",
+                Budget: "",
+                Triptype: "",
+            },
+            queryData: { Travel: "", Class: "", Person: "", OtherService: "" },
+            paymentData: { Payment: "", PaymentDate: "" },
+            referenceData: [
+                {
+                    id: 0,
+                    Name: "",
+                    Phone: "",
+                    WhatsApp: "",
+                    Instagram: "",
+                    LinkedIn: "",
+                    screenshot: "",
+                },
+            ],
+        }
+    )
     const [errors, setError] = useState([])
     const [submit, setSubmit] = useState([])
     const [submitFlag, setSubmitFlag] = useState(false)
@@ -66,7 +68,7 @@ function FormData() {
             screenshot: "",
         },
     ])
-
+    const [add, setAdd] = useState(false)
     const handleAddField = () => {
         let val = { ...values }
         let err = [...referenceError]
@@ -111,6 +113,40 @@ function FormData() {
         [submit],
         [referenceError]
     )
+
+    useEffect(() => {
+        let j
+        for (let i = 0; i < referenceError.length; i++) {
+            if (
+                referenceError[i].Name === "" &&
+                referenceError[i].Phone === "" &&
+                referenceError[i].WhatsApp === "" &&
+                referenceError[i].Instagram === "" &&
+                referenceError[i].LinkedIn === "" &&
+                referenceError[i].screenshot === "" &&
+                finalSubmitFlag === true
+            ) {
+                j = i + 1
+            }
+        }
+        if (referenceError.length === j) {
+            setFlag(true)
+        }
+    }, [referenceError])
+    if (props.prefillData && add === false) {
+        let record = props.prefillData.referenceData.length - 1
+        for (let i = 0; i < record; i++) {
+            referenceError.push({
+                Name: "",
+                Phone: "",
+                WhatsApp: "",
+                Instagram: "",
+                LinkedIn: "",
+                screenshot: "",
+            })
+        }
+        setAdd(true)
+    }
     const handleNext = (e) => {
         e.preventDefault()
         const submit = {}
@@ -154,7 +190,9 @@ function FormData() {
             setSubmit,
             values,
             referenceError,
-            setReferenceError
+            setReferenceError,
+            finalSubmitFlag,
+            setFinalSubmitFlag
         )
         let val = { ...values }
         if (step === "referenceData") {
@@ -173,7 +211,6 @@ function FormData() {
         }
         setValue(val)
     }
-
     const validationFinal = (e) => {
         e.preventDefault()
         let error = [...referenceError]
@@ -193,30 +230,38 @@ function FormData() {
             })
             setReferenceError(error)
         })
-
         setFinalSubmitFlag(true)
     }
 
-    if (
-        referenceError[0].Name === "" &&
-        referenceError[0].Phone === "" &&
-        referenceError[0].WhatsApp === "" &&
-        referenceError[0].Instagram === "" &&
-        referenceError[0].LinkedIn === "" &&
-        referenceError[0].screenshot === "" &&
-        finalSubmitFlag === true
-    ) {
-        setFlag(true)
-        setFinalSubmitFlag(false)
-    }
     if (flag === true && finalSubmitFlag === true) {
-        const info = JSON.parse(localStorage.getItem("data") || "[]")
-        let data = [...info]
-
-        data.push(values)
-
-        localStorage.setItem("data", JSON.stringify(data))
-        navigate("/list")
+        if (add === true) {
+            const retriveData = JSON.parse(localStorage.getItem("inform"))
+            const obj = retriveData.findIndex(
+                (x) => x.basicData.id === props.prefillData.basicData.id
+            )
+            localStorage.setItem("imform", retriveData)
+            // const newData = retriveData?.map((x) => {
+            //     if (x.basicData.id === props.prefillData.basicData.id) {
+            //         return values
+            //     }
+            //     return x
+            // })
+            // localStorage.setItem("inform",newData)
+        } else {
+            if (localStorage.getItem("inform")) {
+                const retriveData = JSON.parse(localStorage.getItem("inform"))
+                let lastIdIndex = retriveData.length - 1
+                let lastId = retriveData[lastIdIndex].basicData.id
+                values.basicData["id"] = lastId + 1
+                retriveData.push(values)
+                localStorage.setItem("inform", JSON.stringify(retriveData))
+            } else {
+                const info = []
+                values.basicData["id"] = 1
+                info.push(values)
+                localStorage.setItem("inform", JSON.stringify(info))
+            }
+        }
     }
 
     return (

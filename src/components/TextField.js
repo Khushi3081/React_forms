@@ -13,6 +13,15 @@ export default function TextField({ label, ...props }) {
         date = "0" + date
     }
     var maxdate = year + "-" + month + "-" + date
+    // if (
+    //     referenceError[0].Name === "" &&
+    //     referenceError[0].Phone === "" &&
+    //     referenceError[0].WhatsApp === "" &&
+    //     referenceError[0].Instagram === "" &&
+    //     referenceError[0].LinkedIn === "" &&
+    //     referenceError[0].screenshot === "" &&
+    //     finalSubmitFlag === true
+    // )
     return (
         <div style={{ marginRight: "1rem" }}>
             <div>
@@ -32,14 +41,30 @@ export default function TextField({ label, ...props }) {
                     <div>
                         {props.type === "submit" ? (
                             <>
-                                <button
-                                    type={props.type}
-                                    name={props.name}
-                                    value={props.name}
-                                    style={{ marginTop: "1rem" }}
-                                >
-                                    {props.name}
-                                </button>
+                                {props.referenceError ? (
+                                    <>
+                                        <button
+                                            type={props.type}
+                                            name={props.name}
+                                            value={props.name}
+                                            disabled
+                                            style={{ marginTop: "1rem" }}
+                                        >
+                                            {props.name}
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <button
+                                            type={props.type}
+                                            name={props.name}
+                                            value={props.name}
+                                            style={{ marginTop: "1rem" }}
+                                        >
+                                            {props.name}
+                                        </button>
+                                    </>
+                                )}
                             </>
                         ) : (
                             <div>
@@ -115,3 +140,11 @@ export default function TextField({ label, ...props }) {
         </div>
     )
 }
+// <button
+//                                     type={props.type}
+//                                     name={props.name}
+//                                     value={props.name}
+//                                     style={{ marginTop: "1rem" }}
+//                                 >
+//                                     {props.name}
+//                                 </button>

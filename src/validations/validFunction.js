@@ -92,7 +92,9 @@ export const validateValue = async (
     setSubmit,
     values,
     referenceError,
-    setReferenceError
+    setReferenceError,
+    finalSubmitFlag,
+    setFinalSubmitFlag
 ) => {
     if (submitFlag === true) {
         switch (name) {
@@ -103,7 +105,7 @@ export const validateValue = async (
                     const errorMsg = "FirstName atleast have 5 letters"
                     {
                         errors.find((errors) => {
-                            return errors.FirstName == errorMsg
+                            return errors.FirstName === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -136,7 +138,7 @@ export const validateValue = async (
                     const errorMsg = "LastName atleast have 5 letters"
                     {
                         errors.find((errors) => {
-                            return errors.LastName == errorMsg
+                            return errors.LastName === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -162,14 +164,14 @@ export const validateValue = async (
                 break
             case "Email":
                 let mail =
-                    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+                    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i
                 if (submit.Email) {
                     delete submit.Email
                 } else if (value && !value.match(mail)) {
                     const errorMsg = "Email is not valid"
                     {
                         errors.find((errors) => {
-                            return errors.Email == errorMsg
+                            return errors.Email === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -201,7 +203,7 @@ export const validateValue = async (
                     const errorMsg = "Phone no is not contained characters"
                     {
                         errors.find((errors) => {
-                            return errors.PhoneNo == errorMsg
+                            return errors.PhoneNo === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -213,7 +215,7 @@ export const validateValue = async (
                     const errorMsg = "Phone no is not valid"
                     {
                         errors.find((errors) => {
-                            return errors.PhoneNo == errorMsg
+                            return errors.PhoneNo === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -248,7 +250,7 @@ export const validateValue = async (
                     const errorMsg = "Date must be less then current date"
                     {
                         errors.find((errors) => {
-                            return errors.DateOfBirth == errorMsg
+                            return errors.DateOfBirth === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -281,7 +283,7 @@ export const validateValue = async (
                     const errorMsg = "Select reletionship status"
                     {
                         errors.find((errors) => {
-                            return errors.reletion == errorMsg
+                            return errors.reletion === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -310,7 +312,7 @@ export const validateValue = async (
                     const errorMsg = "Select Starting location"
                     {
                         errors.find((errors) => {
-                            return errors.From == errorMsg
+                            return errors.From === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -335,7 +337,7 @@ export const validateValue = async (
                     const errorMsg = "Select destination location"
                     {
                         errors.find((errors) => {
-                            return errors.To == errorMsg
+                            return errors.To === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -368,7 +370,7 @@ export const validateValue = async (
                     const errorMsg = "Select Proper date for ending date"
                     {
                         errors.find((errors) => {
-                            return errors.DateToEnd == errorMsg
+                            return errors.DateToEnd === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -400,7 +402,7 @@ export const validateValue = async (
                     const errorMsg = "Budget is not contained characters"
                     {
                         errors.find((errors) => {
-                            return errors.Budget == errorMsg
+                            return errors.Budget === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -412,7 +414,7 @@ export const validateValue = async (
                     const errorMsg = "Budget is not valid"
                     {
                         errors.find((errors) => {
-                            return errors.Budget == errorMsg
+                            return errors.Budget === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -445,7 +447,7 @@ export const validateValue = async (
                     const errorMsg = "Select proper trip-type"
                     {
                         errors.find((errors) => {
-                            return errors.Triptype == errorMsg
+                            return errors.Triptype === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -462,6 +464,8 @@ export const validateValue = async (
                     })
                     setError(newObj)
                 }
+                break
+            default:
                 break
         }
     }
@@ -486,7 +490,7 @@ export const validateValue = async (
 
                     {
                         errors.find((errors) => {
-                            return errors.Person == errorMsg
+                            return errors.Person === errorMsg
                         })
                             ? setError(errors)
                             : setError((errors) => [
@@ -523,112 +527,112 @@ export const validateValue = async (
                     delete submit.PaymentDate
                 }
                 break
-        }
-    }
-    if (submitFlag === true) {
-        switch (name) {
-            case "Name":
-                if (referenceError[index].Name === "Name is required") {
-                    delete referenceError[index].Name
-                } else if (value && value.length <= 8) {
-                    let error = [...referenceError]
-                    const errorMsg = "Name atleast have 8 letters"
-                    error[index].Name = errorMsg
-                    setReferenceError(error)
-                } else {
-                    let error = [...referenceError]
-                    const errorMsg = ""
-                    error[index].Name = errorMsg
-                    setReferenceError(error)
-                    // delete referenceError[index].Name
-                }
-                if (value === "") {
-                    let error = [...referenceError]
-                    const errorMsg = "Name is required"
-                    error[index].Name = errorMsg
-                    setReferenceError(error)
-                }
-                console.log(referenceError)
-                break
-            case "WhatsApp":
-            case "Instagram":
-            case "LinkedIn":
-                console.log(
-                    referenceError[index].WhatsApp,
-                    referenceError[index].Instagram,
-                    referenceError[index].LinkedIn
-                )
-                if (
-                    referenceError[index].WhatsApp ||
-                    referenceError[index].Instagram ||
-                    referenceError[index].LinkedIn
-                ) {
-                    // delete referenceError[index].WhatsApp
-                    // delete referenceError[index].Instagram
-                    // delete referenceError[index].LinkedIn
-                    let error = [...referenceError]
-                    const errorMsg = ""
-                    error[index].WhatsApp = errorMsg
-                    error[index].Instagram = errorMsg
-                    error[index].LinkedIn = errorMsg
-                    setReferenceError(error)
-                }
-                break
-            case "Phone":
-                let phone =
-                    /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
-                if (referenceError[index].Phone === "Phone is required") {
-                    delete referenceError[index].Phone
-                } else if (value && !value.match(phone)) {
-                    let error = [...referenceError]
-                    const errorMsg = "Phone no is not contained characters"
-                    error[index].Phone = errorMsg
-                    setReferenceError(error)
-                } else if (value.length > 10) {
-                    let error = [...referenceError]
-                    const errorMsg = "Phone no is not valid"
-                    error[index].Phone = errorMsg
-                    setReferenceError(error)
-                } else {
-                    let error = [...referenceError]
-                    const errorMsg = ""
-                    error[index].Phone = errorMsg
-                    setReferenceError(error)
-                    // delete referenceError[index].Phone
-                }
-                if (value === "") {
-                    let error = [...referenceError]
-                    const errorMsg = "Phone no is required"
-                    error[index].Phone = errorMsg
-                    setReferenceError(error)
-                }
-                break
-            case "screenshot":
-                if (referenceError[index].screenshot) {
-                    console.log("error")
-                    let error = [...referenceError]
-                    const errorMsg = ""
-                    error[index].screenshot = errorMsg
-                    setReferenceError(error)
-                } else if (!files[0].name.match(/\.(jpg|png|jpeg|gif)$/)) {
-                    let error = [...referenceError]
-                    const errorMsg = "Select image in jpg,png,jpeg and gif mode"
-                    error[index].screenshot = errorMsg
-                    setReferenceError(error)
-                } else if (files[0].size > 5000000) {
-                    let error = [...referenceError]
-                    const errorMsg = "Image size should be less than 5mb"
-                    error[index].screenshot = errorMsg
-                    setReferenceError(error)
-                } else {
-                    // delete referenceError[index].screenshot
-                    let error = [...referenceError]
-                    const errorMsg = ""
-                    error[index].screenshot = errorMsg
-                    setReferenceError(error)
-                }
             default:
                 break
         }
     }
+    // if (finalSubmitFlag === true) {
+    switch (name) {
+        case "Name":
+            if (referenceError[index].Name === "Name is required") {
+                delete referenceError[index].Name
+            } else if (value && value.length <= 8) {
+                let error = [...referenceError]
+                const errorMsg = "Name atleast have 8 letters"
+                error[index].Name = errorMsg
+                setReferenceError(error)
+            } else {
+                let error = [...referenceError]
+                const errorMsg = ""
+                error[index].Name = errorMsg
+                setReferenceError(error)
+                // delete referenceError[index].Name
+            }
+            if (value === "") {
+                let error = [...referenceError]
+                const errorMsg = "Name is required"
+                error[index].Name = errorMsg
+                setReferenceError(error)
+            }
+            setFinalSubmitFlag(false)
+            break
+        case "WhatsApp":
+        case "Instagram":
+        case "LinkedIn":
+            if (
+                referenceError[index].WhatsApp ||
+                referenceError[index].Instagram ||
+                referenceError[index].LinkedIn
+            ) {
+                // delete referenceError[index].WhatsApp
+                // delete referenceError[index].Instagram
+                // delete referenceError[index].LinkedIn
+                let error = [...referenceError]
+                const errorMsg = ""
+                error[index].WhatsApp = errorMsg
+                error[index].Instagram = errorMsg
+                error[index].LinkedIn = errorMsg
+                setReferenceError(error)
+            }
+            setFinalSubmitFlag(false)
+            break
+        case "Phone":
+            let phone =
+                /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+            if (referenceError[index].Phone === "Phone is required") {
+                delete referenceError[index].Phone
+            } else if (value && !value.match(phone)) {
+                let error = [...referenceError]
+                const errorMsg = "Phone no is not contained characters"
+                error[index].Phone = errorMsg
+                setReferenceError(error)
+            } else if (value.length > 10) {
+                let error = [...referenceError]
+                const errorMsg = "Phone no is not valid"
+                error[index].Phone = errorMsg
+                setReferenceError(error)
+            } else {
+                let error = [...referenceError]
+                const errorMsg = ""
+                error[index].Phone = errorMsg
+                setReferenceError(error)
+                // delete referenceError[index].Phone
+            }
+            if (value === "") {
+                let error = [...referenceError]
+                const errorMsg = "Phone no is required"
+                error[index].Phone = errorMsg
+                setReferenceError(error)
+            }
+            setFinalSubmitFlag(false)
+            break
+        case "screenshot":
+            if (referenceError[index].screenshot) {
+                let error = [...referenceError]
+                const errorMsg = ""
+                error[index].screenshot = errorMsg
+                setReferenceError(error)
+            } else if (!files[0].name.match(/\.(jpg|png|jpeg|gif)$/)) {
+                let error = [...referenceError]
+                const errorMsg = "Select image in jpg,png,jpeg and gif mode"
+                error[index].screenshot = errorMsg
+                setReferenceError(error)
+            } else if (files[0].size > 5000000) {
+                let error = [...referenceError]
+                const errorMsg = "Image size should be less than 5mb"
+                error[index].screenshot = errorMsg
+                setReferenceError(error)
+            } else {
+                // delete referenceError[index].screenshot
+                let error = [...referenceError]
+                const errorMsg = ""
+                error[index].screenshot = errorMsg
+                setReferenceError(error)
+            }
+            setFinalSubmitFlag(false)
+            break
+        default:
+            break
+    }
+    // }
 }
